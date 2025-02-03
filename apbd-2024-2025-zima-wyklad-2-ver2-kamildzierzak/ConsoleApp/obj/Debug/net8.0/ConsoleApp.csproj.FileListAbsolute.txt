@@ -1,0 +1,15 @@
+D:\repos\personal\pjatk-apbd\apbd-2024-2025-zima-wyklad-2-ver2-kamildzierzak\ConsoleApp\bin\Debug\net8.0\ConsoleApp.exe
+D:\repos\personal\pjatk-apbd\apbd-2024-2025-zima-wyklad-2-ver2-kamildzierzak\ConsoleApp\bin\Debug\net8.0\ConsoleApp.deps.json
+D:\repos\personal\pjatk-apbd\apbd-2024-2025-zima-wyklad-2-ver2-kamildzierzak\ConsoleApp\bin\Debug\net8.0\ConsoleApp.runtimeconfig.json
+D:\repos\personal\pjatk-apbd\apbd-2024-2025-zima-wyklad-2-ver2-kamildzierzak\ConsoleApp\bin\Debug\net8.0\ConsoleApp.dll
+D:\repos\personal\pjatk-apbd\apbd-2024-2025-zima-wyklad-2-ver2-kamildzierzak\ConsoleApp\bin\Debug\net8.0\ConsoleApp.pdb
+D:\repos\personal\pjatk-apbd\apbd-2024-2025-zima-wyklad-2-ver2-kamildzierzak\ConsoleApp\obj\Debug\net8.0\ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\repos\personal\pjatk-apbd\apbd-2024-2025-zima-wyklad-2-ver2-kamildzierzak\ConsoleApp\obj\Debug\net8.0\ConsoleApp.AssemblyInfoInputs.cache
+D:\repos\personal\pjatk-apbd\apbd-2024-2025-zima-wyklad-2-ver2-kamildzierzak\ConsoleApp\obj\Debug\net8.0\ConsoleApp.AssemblyInfo.cs
+D:\repos\personal\pjatk-apbd\apbd-2024-2025-zima-wyklad-2-ver2-kamildzierzak\ConsoleApp\obj\Debug\net8.0\ConsoleApp.csproj.CoreCompileInputs.cache
+D:\repos\personal\pjatk-apbd\apbd-2024-2025-zima-wyklad-2-ver2-kamildzierzak\ConsoleApp\obj\Debug\net8.0\ConsoleApp.sourcelink.json
+D:\repos\personal\pjatk-apbd\apbd-2024-2025-zima-wyklad-2-ver2-kamildzierzak\ConsoleApp\obj\Debug\net8.0\ConsoleApp.dll
+D:\repos\personal\pjatk-apbd\apbd-2024-2025-zima-wyklad-2-ver2-kamildzierzak\ConsoleApp\obj\Debug\net8.0\refint\ConsoleApp.dll
+D:\repos\personal\pjatk-apbd\apbd-2024-2025-zima-wyklad-2-ver2-kamildzierzak\ConsoleApp\obj\Debug\net8.0\ConsoleApp.pdb
+D:\repos\personal\pjatk-apbd\apbd-2024-2025-zima-wyklad-2-ver2-kamildzierzak\ConsoleApp\obj\Debug\net8.0\ConsoleApp.genruntimeconfig.cache
+D:\repos\personal\pjatk-apbd\apbd-2024-2025-zima-wyklad-2-ver2-kamildzierzak\ConsoleApp\obj\Debug\net8.0\ref\ConsoleApp.dll

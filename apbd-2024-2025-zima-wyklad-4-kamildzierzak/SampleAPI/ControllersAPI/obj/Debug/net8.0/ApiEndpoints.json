@@ -1,0 +1,139 @@
+[
+  {
+    "ContainingType": "ControllersAPI.Controllers.AnimalsController",
+    "Method": "GetAnimals",
+    "RelativePath": "api/animals",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControllersAPI.Controllers.AnimalsController",
+    "Method": "CreateAnimal",
+    "RelativePath": "api/animals",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "animal",
+        "Type": "ControllersAPI.Models.Animal",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControllersAPI.Controllers.AnimalsController",
+    "Method": "GetAnimal",
+    "RelativePath": "api/animals/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControllersAPI.Controllers.AnimalsController",
+    "Method": "UpdateAnimal",
+    "RelativePath": "api/animals/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "animal",
+        "Type": "ControllersAPI.Models.Animal",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControllersAPI.Controllers.AnimalsController",
+    "Method": "DeleteAnimal",
+    "RelativePath": "api/animals/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControllersAPI.Controllers.VisitController",
+    "Method": "GetVisits",
+    "RelativePath": "api/animals/{id}/visits",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControllersAPI.Controllers.VisitController",
+    "Method": "CreateVisit",
+    "RelativePath": "api/animals/{id}/visits",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "visit",
+        "Type": "ControllersAPI.Models.Visit",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControllersAPI.Controllers.VisitController",
+    "Method": "GetVisit",
+    "RelativePath": "api/animals/{id}/visits/{idVisit}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idVisit",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "ContainingType": "Exercise6.Controllers.WarehouseController",
+    "Method": "AddProductToWarehouse",
+    "RelativePath": "api/Warehouse/add-product",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Exercise6.Model.AddProductRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

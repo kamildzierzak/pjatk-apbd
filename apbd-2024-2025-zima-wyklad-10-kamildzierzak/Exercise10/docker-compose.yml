@@ -1,0 +1,42 @@
+name: exercise10
+services:
+  exercise10.api:
+    container_name: exercise10.api
+    build:
+      context: .
+      dockerfile: Exercise10.API/Dockerfile
+    ports:
+      - "5000:8080"
+    depends_on:
+      - exercise10.sqlserver
+
+  exercise10.sqlserver:
+    container_name: exercise10.sqlserver
+    image: mcr.microsoft.com/mssql/server:2022-CU12-ubuntu-22.04
+    ports:
+      - "1433:1433"
+    hostname: mssqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Strongpassword314!
+      - MSSQL_DBNAME=testdb
+      - MSSQL_PID=Developer
+    command: >
+      /bin/bash -c "
+      /opt/mssql/bin/sqlservr &
+
+      until /opt/mssql-tools/bin/sqlcmd -l 1 -S mssqlserver -U sa -P 'Strongpassword314!' -Q 'SELECT 1' &> /dev/null; do
+        >&2 echo '>>>>>>>>>> SQL Server is unavailable - sleeping <<<<<<<<<<';
+        sleep 5;
+      done;
+      echo '>>>>>>>>>> SQL Server is ready - executing init script <<<<<<<<<<';
+      /opt/mssql-tools/bin/sqlcmd -l 5 -S mssqlserver -U sa -P 'Strongpassword314!' -d master -i /tmp/init.sql;
+
+      sleep infinity;"  
+    volumes:
+      - ./init.sql:/tmp/init.sql
+      # - sqlserverdata:/var/opt/mssql
+
+# volumes:
+#   sqlserverdata:
+#     driver: local  
