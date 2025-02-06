@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Web.Api.Context;
+using Web.Api.Dto;
 using WebApp.Models;
 
 namespace Web.Api.Controllers;
@@ -22,12 +23,54 @@ public class PatientController : ControllerBase
         return await _context.Patients.ToListAsync();
     }
 
+    // 🆕 Get Patient Details with Prescriptions
     [HttpGet("{id}")]
-    public async Task<ActionResult<Patient>> GetPatient(int id)
+    public async Task<ActionResult<PatientDetailsResponse>> GetPatientDetails(int id)
     {
-        var patient = await _context.Patients.FindAsync(id);
-        if (patient == null) return NotFound();
-        return patient;
+        var patient = await _context.Patients
+            .Include(p => p.Prescriptions)
+                .ThenInclude(pr => pr.Doctor)
+            .Include(p => p.Prescriptions)
+                .ThenInclude(pr => pr.PrescriptionMedicaments)
+                    .ThenInclude(pm => pm.Medicament)
+            .FirstOrDefaultAsync(p => p.IdPatient == id);
+
+        if (patient == null)
+            return NotFound("Patient not found.");
+
+        var response = new PatientDetailsResponse
+        {
+            IdPatient = patient.IdPatient,
+            FirstName = patient.FirstName,
+            LastName = patient.LastName,
+            Birthdate = patient.Birthdate,
+            Prescriptions = patient.Prescriptions
+                .OrderBy(pr => pr.DueDate) // Sort by DueDate ascending
+                .Select(pr => new PrescriptionResponse
+                {
+                    IdPrescription = pr.IdPrescription,
+                    Date = pr.Date,
+                    DueDate = pr.DueDate,
+                    Doctor = new DoctorDto
+                    {
+                        IdDoctor = pr.Doctor.IdDoctor,
+                        FirstName = pr.Doctor.FirstName,
+                        LastName = pr.Doctor.LastName
+                    },
+                    Medicaments = pr.PrescriptionMedicaments
+                        .Select(pm => new MedicamentDto
+                        {
+                            IdMedicament = pm.Medicament.IdMedicament,
+                            Name = pm.Medicament.Name,
+                            Description = pm.Medicament.Description,
+                            Type = pm.Medicament.Type,
+                            Dose = pm.Dose,
+                            Details = pm.Details
+                        }).ToList()
+                }).ToList()
+        };
+
+        return Ok(response);
     }
 
     [HttpPost]
@@ -35,7 +78,7 @@ public class PatientController : ControllerBase
     {
         _context.Patients.Add(patient);
         await _context.SaveChangesAsync();
-        return CreatedAtAction(nameof(GetPatient), new { id = patient.IdPatient }, patient);
+        return CreatedAtAction(nameof(GetPatientDetails), new { id = patient.IdPatient }, patient);
     }
 
     [HttpPut("{id}")]
