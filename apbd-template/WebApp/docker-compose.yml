@@ -1,0 +1,37 @@
+name: web.template
+
+services:
+  sqlserver:
+    container_name: sqlserver
+    image: mcr.microsoft.com/mssql/server:2022-CU12-ubuntu-22.04
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Strongpassword314!
+    healthcheck:
+      test: [ "CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "Strongpassword314!", "-Q", "SELECT 1"]
+      interval: 10s
+      retries: 5
+      start_period: 20s
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+
+  web.api:
+    container_name: web.api
+    build:
+      context: .
+      dockerfile: Web.Api/Dockerfile
+    ports:
+      - "5000:8080"
+      - "5001:8081"  # Optional HTTPS port mapping
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=testdb;User Id=sa;Password=Strongpassword314!;TrustServerCertificate=True;
+    entrypoint: [ "bash", "-c", "dotnet ef database update && dotnet Web.Api.dll" ]
+
+volumes:
+  sqlserver_data:
