@@ -5,10 +5,10 @@ namespace WebApp.Dto;
 public class NewPrescriptionRequest
 {
     [Required]
-    public PatientDto Patient { get; set; }
+    public NewPatientDto Patient { get; set; } // ✅ Renamed to avoid conflict
 
     [Required]
-    public List<MedicamentDto> Medicaments { get; set; }
+    public List<NewMedicamentDto> Medicaments { get; set; } // ✅ Renamed to avoid conflict
 
     [Required]
     public DateTime Date { get; set; }
@@ -20,7 +20,7 @@ public class NewPrescriptionRequest
     public int IdDoctor { get; set; }
 }
 
-public class PatientDto
+public class NewPatientDto // ✅ Renamed to NewPatientDto
 {
     public int? IdPatient { get; set; }
     [Required, MaxLength(100)]
@@ -31,7 +31,7 @@ public class PatientDto
     public DateTime Birthdate { get; set; }
 }
 
-public class MedicamentDto
+public class NewMedicamentDto // ✅ Renamed to NewMedicamentDto
 {
     [Required]
     public int IdMedicament { get; set; }
@@ -40,4 +40,3 @@ public class MedicamentDto
     [MaxLength(100)]
     public string Details { get; set; }
 }
-

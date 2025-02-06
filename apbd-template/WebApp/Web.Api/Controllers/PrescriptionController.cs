@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Web.Api.Context;
+using Web.Api.Dto;
 using WebApp.Dto;
 using WebApp.Models;
 
@@ -15,6 +16,55 @@ public class PrescriptionController : ControllerBase
     public PrescriptionController(WebAppDbContext context)
     {
         _context = context;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<PrescriptionResponse>>> GetPrescriptions()
+    {
+        var prescriptions = await _context.Prescriptions
+            .Include(p => p.Patient)
+            .Include(p => p.Doctor)
+            .Include(p => p.PrescriptionMedicaments)
+                .ThenInclude(pm => pm.Medicament)
+            .ToListAsync();
+
+        if (!prescriptions.Any())
+            return NotFound("No prescriptions found.");
+
+        var response = prescriptions.Select(p => new PrescriptionResponse
+        {
+            IdPrescription = p.IdPrescription,
+            Date = p.Date,
+            DueDate = p.DueDate,
+
+            Patient = new PatientDto
+            {
+                IdPatient = p.Patient.IdPatient,
+                FirstName = p.Patient.FirstName,
+                LastName = p.Patient.LastName,
+                Birthdate = p.Patient.Birthdate
+            },
+
+            Doctor = new DoctorDto
+            {
+                IdDoctor = p.Doctor.IdDoctor,
+                FirstName = p.Doctor.FirstName,
+                LastName = p.Doctor.LastName
+            },
+
+            Medicaments = p.PrescriptionMedicaments.Select(pm => new MedicamentDto
+            {
+                IdMedicament = pm.Medicament.IdMedicament,
+                Name = pm.Medicament.Name,
+                Description = pm.Medicament.Description,
+                Type = pm.Medicament.Type,
+                Dose = pm.Dose,
+                Details = pm.Details
+            }).ToList()
+
+        }).ToList();
+
+        return Ok(response);
     }
 
     [HttpPost]
